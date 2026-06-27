@@ -8,4 +8,8 @@ public class TestController {
     public String test() {
         return "API is working";
     }
+    @GetMapping("/hello")
+    public String hello() {
+        return "Hello from the API!";
+    }
 }

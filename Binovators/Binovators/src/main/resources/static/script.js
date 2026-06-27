@@ -1,3 +1,5 @@
+console.log("script loaded");
+
 function load() {
     fetch("/hello")
         .then(res => res.text())
@@ -57,18 +59,13 @@ function updateUser() {
 
 }
 
-//ANIMAL CRUD
-function deleteAnimal() {
-    let id = document.getElementById("userId").value;
 
-    fetch("http://localhost:8080/animals/" + id, {
-        method: "DELETE"
-    })
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById("result").innerText = data;
-    })
-    .catch(error => {
-        document.getElementById("result").innerText = "Error deleting animal";
-    });
-}
+
+
+
+
+
+//ANIMAL CRUD
+
+
+

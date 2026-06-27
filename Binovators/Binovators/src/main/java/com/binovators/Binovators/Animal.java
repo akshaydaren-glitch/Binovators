@@ -4,6 +4,8 @@ import jakarta.persistence.GeneratedValue;
 
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 
 @Entity
@@ -69,5 +71,7 @@ public class Animal{
     public void setStatus(String status) {
         this.status = status;
     }
-    
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

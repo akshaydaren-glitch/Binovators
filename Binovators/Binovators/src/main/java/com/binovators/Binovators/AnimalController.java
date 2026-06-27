@@ -1,17 +1,10 @@
 package com.binovators.Binovators;
 
-
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
-@RestController
+@Controller
 @RequestMapping("/animals")
 public class AnimalController {
 
@@ -23,42 +16,67 @@ public class AnimalController {
 
     // CREATE
     @PostMapping
-    public Animal createAnimal(@RequestBody Animal animal) {
-        return animalRepository.save(animal);
+    public String createAnimal(
+            @RequestParam String name,
+            @RequestParam String type,
+            @RequestParam String description,
+            @RequestParam String status) {
+
+        Animal animal = new Animal();
+        animal.setName(name);
+        animal.setType(type);
+        animal.setDescription(description);
+        animal.setStatus(status);
+
+        animalRepository.save(animal);
+
+        return "redirect:/animals/page";
     }
 
-    // READ ALL
-    @GetMapping
-    public List<Animal> getAllAnimals() {
-        return animalRepository.findAll();
+    // SHOW PAGE
+    @GetMapping("/page")
+    public String showAnimals(Model model) {
+        model.addAttribute("animals", animalRepository.findAll());
+        return "animals";
     }
 
-    // READ ONE
-    @GetMapping("/{id}")
-    public Animal getAnimalById(@PathVariable Long id) {
-        return animalRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Animal not found"));
-    }
+    
 
-    // UPDATE
-    @PutMapping("/{id}")
-    public Animal updateAnimal(@PathVariable Long id, @RequestBody Animal updatedAnimal) {
-
-        Animal animal = animalRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Animal not found"));
-
-        animal.setName(updatedAnimal.getName());
-        animal.setType(updatedAnimal.getType());
-        animal.setDescription(updatedAnimal.getDescription());
-        animal.setStatus(updatedAnimal.getStatus());
-
-        return animalRepository.save(animal);
-    }
-
-    // DELETE
-    @DeleteMapping("/{id}")
+    // DELETE (simple HTML link version)
+    @GetMapping("/delete/{id}")
     public String deleteAnimal(@PathVariable Long id) {
         animalRepository.deleteById(id);
-        return "Animal deleted with id " + id;
+        return "redirect:/animals/page";
     }
+
+    @GetMapping("/edit/{id}")
+public String showEditPage(@PathVariable Long id, Model model) {
+
+    Animal animal = animalRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Animal not found"));
+
+    model.addAttribute("animal", animal);
+
+    return "edit-animal";
+}
+
+@PostMapping("/update/{id}")
+public String updateAnimal(@PathVariable Long id,
+                           @RequestParam String name,
+                           @RequestParam String type,
+                           @RequestParam String description,
+                           @RequestParam String status) {
+
+    Animal animal = animalRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Animal not found"));
+
+    animal.setName(name);
+    animal.setType(type);
+    animal.setDescription(description);
+    animal.setStatus(status);
+
+    animalRepository.save(animal);
+
+    return "redirect:/animals/page";
+}
 }

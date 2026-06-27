@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Animals</title>
+</head>
+<body>
+
+<h1>Add Animal</h1>
+
+<form action="/animals" method="post">
+
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="text" name="type" placeholder="Type" required>
+    <input type="text" name="description" placeholder="Description" required>
+    <input type="text" name="status" placeholder="Status" required>
+
+    <button type="submit">Save Animal</button>
+</form>
+
+<hr>
+
+<h1>Animal List</h1>
+
+
+
+<div th:each="animal : ${animals}">
+    <p>
+        Name: <span th:text="${animal.name}"></span> |
+        Type: <span th:text="${animal.type}"></span> |
+        Description: <span th:text="${animal.description}"></span> |
+        Status: <span th:text="${animal.status}"></span>
+    </p>
+
+    <a th:href="@{'/animals/edit/' + ${animal.id}}">Edit</a>
+    <hr>
+    <a th:href="@{'/animals/delete/' + ${animal.id}}">Delete</a>
+</div>
+
+
+
+
+</body>
+</html>
