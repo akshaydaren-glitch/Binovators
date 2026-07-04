@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Adoption Applications</title>
+    <link rel="stylesheet" href="/style.css" />
+</head>
+<body style="margin: 30px;">
+
+    <h1>Adoption Dashboard</h1>
+    <p><a href="/animals/page">← Back to All Animals</a> | <a href="/messages/inbox">My Messages Inbox</a></p>
+    <hr>
+
+    <h2>Applications Received for Your Pets</h2>
+    <div th:if="${#lists.isEmpty(inbound)}"><p>No adoption applications received yet.</p></div>
+    <div th:each="app : ${inbound}" style="border: 1px solid #ccc; padding: 15px; margin-bottom: 10px; background-color: #fafafa;">
+        <p>
+            <strong>Pet Name:</strong> <span th:text="${app.animal.name}"></span><br>
+            <strong>Applicant User:</strong> <span th:text="${app.applicant.name}"></span> (<span th:text="${app.applicant.username}"></span>)<br>
+            <strong>Notes:</strong> <span th:text="${app.notes}"></span><br>
+            <strong>Status:</strong> <span th:text="${app.status}"></span>
+        </p>
+        <div th:if="${app.status == 'PENDING'}">
+            <form th:action="@{'/adoption/review/' + ${app.id}}" method="post" style="display:inline;">
+                <input type="hidden" name="action" value="APPROVE">
+                <button type="submit" style="background: green; color: white; padding: 5px 10px; cursor: pointer;">Approve Adoption</button>
+            </form>
+            <form th:action="@{'/adoption/review/' + ${app.id}}" method="post" style="display:inline; margin-left: 10px;">
+                <input type="hidden" name="action" value="REJECT">
+                <button type="submit" style="background: red; color: white; padding: 5px 10px; cursor: pointer;">Reject</button>
+            </form>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>Your Submitted Applications</h2>
+    <div th:if="${#lists.isEmpty(outbound)}"><p>You haven't applied to adopt any pets yet.</p></div>
+    <div th:each="app : ${outbound}" style="border: 1px solid #ddd; padding: 15px; margin-bottom: 10px;">
+        <p>
+            <strong>Pet Name:</strong> <span th:text="${app.animal.name}"></span><br>
+            <strong>Your Message:</strong> <span th:text="${app.notes}"></span><br>
+            <strong>Status:</strong> <strong th:text="${app.status}"></strong>
+        </p>
+    </div>
+
+</body>
+</html>
