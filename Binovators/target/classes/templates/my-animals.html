@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Animals</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="container">
+    <section class="hero" style="padding: 1.5rem 0 2rem;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+            <div>
+                <h1 class="page-title">My Animals</h1>
+                <p class="page-copy" style="margin-top: 0.5rem;">Review and manage the pets you’ve listed.</p>
+            </div>
+            <a class="primary-btn" href="/animals/page">All Animals</a>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+        <div th:if="${#lists.isEmpty(animals)}">
+            <div class="card">
+                <p>You haven’t added any animals yet.</p>
+            </div>
+        </div>
+
+        <div th:each="animal : ${animals}" th:if="${animal != null}" class="card" style="margin-bottom: 1.25rem;">
+            <div class="grid-2" style="gap: 1.5rem; align-items: start;">
+                <div>
+                    <p style="margin-top: 0;">
+                        <strong>Name:</strong> <span th:text="${animal.name}"></span><br>
+                        <strong>Type:</strong> <span th:text="${animal.type}"></span><br>
+                        <strong>Description:</strong> <span th:text="${animal.description}"></span><br>
+                        <strong>Status:</strong> <span th:text="${animal.status}"></span>
+                    </p>
+
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem;">
+                        <a class="primary-btn" th:href="@{'/animals/edit/' + ${animal.id}}">Edit</a>
+                        <a class="primary-btn" th:href="@{'/animals/delete/' + ${animal.id}}">Delete</a>
+                    </div>
+                </div>
+
+                <div>
+                    <img th:src="@{'/animals/image/' + ${animal.id}}" style="width: 100%; max-width: 320px; border-radius: 12px;">
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>
