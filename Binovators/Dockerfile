@@ -1,12 +1,14 @@
-FROM maven:3.9-eclipse-temurin-17
+*ROM maven:3.9-eclipse-temurin-17
 
-WORKDIR /app
+*ORKDIR /app
 
-COPY pom.xml .
-COPY src ./src
+COPY . .
 
-RUN mvn clean package -DskipTests
+RUN ls -la
+*RUN find /app -name "pom.xml"
 
-EXPOSE 8080
+RUN*./mvnw clean package -DskipTests
+
+*XPOSE 8080
 
 CMD ["java","-jar","target/Binovators-0.0.1-SNAPSHOT.jar"]
