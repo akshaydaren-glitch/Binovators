@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Inbox</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+<div class="container">
+    <h1 class="page-title">Your Conversations Inbox</h1>
+
+    <p>
+        <a href="/animals/page">← Back to All Animals</a> |
+        <a href="/adoption/my-applications">Adoption Dashboard</a>
+    </p>
+
+    <hr>
+
+    <div th:if="${#lists.isEmpty(threads)}">
+        <p>Your inbox is empty.</p>
+    </div>
+
+    <div th:each="thread : ${threads}" class="card" style="margin-bottom: 1rem;">
+        <p>
+            <strong>Regarding Pet:</strong>
+            <span th:text="${thread.animalName}"></span><br>
+            <strong>Chat Partner:</strong>
+            <span th:text="${thread.partnerName}"></span><br>
+            <strong>Latest Message:</strong>
+            <span th:text="${thread.latestText}"></span>
+        </p>
+
+        <a th:href="@{/messages/thread/{animalId}/{partnerId}(animalId=${thread.animalId}, partnerId=${thread.partnerId})}"
+           class="primary-btn"
+           style="display: inline-flex; padding: 0.7rem 1rem;">
+            Open Chat Room →
+        </a>
+    </div>
+</div>
+</body>
+</html>
