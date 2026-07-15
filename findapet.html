@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find A Pet - Binovator</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body class="findpet">
+    <div class="Binovators">
+        <nav>
+            <div class="nav-left">
+                <a href="Index.html" class="logo-section">
+                    <img src="Images/logo.png" class="home-thumb" width="100" height="70" alt="Logo">
+                    <img src="Images/naam.png" class="home-name" width="90" height="40" alt="Name">
+                </a>
+            </div>
+            <ul class="nav-center">
+                <li><a href="Index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="findapet.html" class="active">Find a Pet</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-right">
+                <a href="login.html" class="btn anim">Log in</a>
+                <a href="findapet.html" class="btn anim">Get Started</a>
+            </div>
+        </nav>
+
+        <main class="findapet-page">
+            <section class="findapet-hero">
+                <div class="findapet-hero-content">
+                    <p class="eyebrow">Adopt. Love. Repeat.</p>
+                    <h1>Find your new best friend in Paramaribo</h1>
+                    <p>Browse loving pets available for adoption and choose the companion that fits your home, lifestyle, and heart.</p>
+                    <div class="findapet-categories" role="tablist" aria-label="Pet categories">
+                        <button class="choice-chip active" data-pet="dog">Dogs</button>
+                        <button class="choice-chip" data-pet="cat">Cats</button>
+                        <button class="choice-chip" data-pet="other">Other pets</button>
+                    </div>
+                </div>
+
+                <div class="findapet-hero-panel">
+                    <div class="findapet-search-card">
+                        <h2>Search options</h2>
+                        <div class="filter-grid">
+                            <label>
+                                Pet type
+                                <select>
+                                    <option>Any</option>
+                                    <option>Dogs</option>
+                                    <option>Cats</option>
+                                    <option>Rabbits</option>
+                                    <option>Hamsters</option>
+                                </select>
+                            </label>
+                            <label>
+                                Location
+                                <select>
+                                    <option>Paramaribo</option>
+                                    <option>Commewijne</option>
+                                    <option>Wanica</option>
+                                    <option>Marowijne</option>
+                                    <option>Saramacca</option>
+                                    <option>Nickerie</option>
+                                    <option>Coronie</option>
+                                    <option>Brokopondo</option>
+                                    <option>Para</option>
+                                    <option>Sipaliwini</option>
+                                </select>
+                            </label>
+                            <label>
+                                Age
+                                <select>
+                                    <option>Any age</option>
+                                    <option>Puppy</option>
+                                    <option>Adult</option>
+                                    <option>Senior</option>
+                                </select>
+                            </label>
+                            <label>
+                                Size
+                                <select>
+                                    <option>Any size</option>
+                                    <option>Small</option>
+                                    <option>Medium</option>
+                                    <option>Large</option>
+                                </select>
+                            </label>
+                            <label>
+                                Gender
+                                <select>
+                                    <option>Any</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>
+                            </label>
+                            <label>
+                                Good with
+                                <select>
+                                    <option>Any</option>
+                                    <option>Children</option>
+                                    <option>Other pets</option>
+                                </select>
+                            </label>
+                        </div>
+                        <button class="btn search-btn">Search pets</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="findapet-results-section">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">Featured pets</p>
+                        <h2 id="results-title">Dogs ready for adoption</h2>
+                    </div>
+                    <a href="#" class="text-link">View all</a>
+                </div>
+                <div id="pet-results-grid" class="pet-results-grid"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="Script.js"></script>
+    <script>
+        const petProfiles = {
+            dog: [
+                { name: 'Luna', age: '2 years old', size: 'Medium', img: 'Images/dog.jpg', tag: 'Playful' },
+                { name: 'Browny', age: '1 year old', size: 'Large', img: 'Images/pup.jpeg', tag: 'Gentle' },
+                { name: 'Milo', age: '3 years old', size: 'Small', img: 'Images/dog.jpg', tag: 'Loves cuddles' }
+            ],
+            cat: [
+                { name: 'Misty', age: '8 months old', size: 'Small', img: 'Images/cat.png', tag: 'Curious' },
+                { name: 'Cocoa', age: '2 years old', size: 'Medium', img: 'Images/cat.png', tag: 'Quiet' },
+                { name: 'Nora', age: '4 years old', size: 'Small', img: 'Images/cat.png', tag: 'Affectionate' }
+            ],
+            other: [
+                { name: 'Bibi', age: '1 year old', size: 'Small', img: 'Images/paw.png', tag: 'Friendly' },
+                { name: 'Pip', age: '2 years old', size: 'Small', img: 'Images/paw.png', tag: 'Energetic' },
+                { name: 'Toby', age: '3 years old', size: 'Medium', img: 'Images/paw.png', tag: 'Calm' }
+            ]
+        };
+
+        function renderPets(type) {
+            const title = document.getElementById('results-title');
+            const grid = document.getElementById('pet-results-grid');
+            const profiles = petProfiles[type] || petProfiles.dog;
+            const label = type === 'cat' ? 'Cats ready for adoption' : type === 'other' ? 'Other pets ready for adoption' : 'Dogs ready for adoption';
+
+            title.textContent = label;
+            grid.innerHTML = profiles.map(profile => `
+                <article class="pet-card">
+                    <img src="${profile.img}" alt="${profile.name}">
+                    <div class="pet-card-body">
+                        <span class="pet-badge">${profile.tag}</span>
+                        <h3>${profile.name}</h3>
+                        <p class="pet-meta">${profile.age} • ${profile.size}</p>
+                        <a href="#" class="btn">Meet ${profile.name}</a>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.choice-chip').forEach(button => {
+                button.addEventListener('click', function () {
+                    document.querySelectorAll('.choice-chip').forEach(chip => chip.classList.remove('active'));
+                    this.classList.add('active');
+                    renderPets(this.dataset.pet);
+                });
+            });
+
+            renderPets('dog');
+        });
+    </script>
+</body>
+</html>

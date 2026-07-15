@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Binovator Pet Adoption</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="contact">
+    <div class="Binovators">
+        <nav>
+            <div class="nav-left">
+                 <a href="Index.html" class="logo-section">
+                    <img src="Images/logo.png" class="home-thumb" width="100" height="70" alt="Logo">
+                    <img src="Images/naam.png" class="home-name" width="90" height="40" alt="Name">
+                </a>
+            </div>
+            <ul class="nav-center">
+                <li><a href="Index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="findapet.html">Find a Pet</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+          <div class="nav-right">
+                <a href="login.html" class="btn anim">Log in</a>
+                <a href="findapet.html" class="btn anim">Get Started</a>
+            </div>
+        </nav>
+
+        <section class="contact-hero">
+            <div class="hero-content">
+                <div class="eyebrow">Contact Us</div>
+                <h1>How can we help you?</h1>
+                <p>Do you have questions about adoption, a specific animal, or our platform? We'd love to hear from you.</p>
+            </div>
+            <div class="contact-hero-img">
+                <div class="contact-photo-stack">
+                    <div class="circle-photo cp1">
+                        <img src="images/Image4.jpeg" alt="kat">
+                    </div>
+                    <div class="circle-photo cp2">
+                        <img src="images/pup.jpeg" alt="Hond">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="contact-wrapper">
+            <div class="contact-main">
+
+        <div class="info-col">
+            <div class="section-label">Our Information</div>
+            <div class="info-h2">Reach Us</div>
+
+            <div class="info-card">
+                <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                <div>
+                    <div class="info-label">Address</div>
+                    <div class="info-val">Paramaribo, Suriname</div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+                <div>
+                    <div class="info-label">Phone</div>
+                    <div class="info-val">+597 895 4321</div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+                <div>
+                    <div class="info-label">E-mail</div>
+                    <div class="info-val">info@binovator.sr</div>
+                    <div class="info-sub">We respond within 24 hours</div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-icon"><i class="fa-solid fa-clock"></i></div>
+                <div>
+                    <div class="info-label">Opening Hours</div>
+                    <div class="info-val">Mon–Fri: 8:00–17:00</div>
+                    <div class="info-sub">Saturday: 9:00–13:00 · Sunday closed</div>
+                </div>
+            </div>
+
+            <div class="social-title">Follow Us</div>
+            <div class="social-row">
+                <a href="#" class="social-btn s-fb"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+                <a href="#" class="social-btn s-ig"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                <a href="#" class="social-btn s-tt"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+                <a href="#" class="social-btn s-wa"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+            </div>
+        </div>
+
+        <div class="form-col">
+            <div class="section-label">Send a Message</div>
+            <div class="form-h2">We'd love to hear from you</div>
+
+            <form id="contact-form" action="https://formspree.io/f/mpqgpkjn" method="POST">
+
+                <div class="form-group">
+                    <label for="naam">Name</label>
+                    <input type="text" id="naam" name="naam" placeholder="Your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="onderwerp">Subject</label>
+                    <select id="onderwerp" name="onderwerp" required>
+                        <option value="">Choose a subject</option>
+                        <option value="adoptie">Question about adoption</option>
+                        <option value="dier">Information about a pet</option>
+                        <option value="technisch">Technical support</option>
+                        <option value="samenwerking">Partnership</option>
+                        <option value="overig">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="bericht">Message</label>
+                    <textarea id="bericht" name="bericht" placeholder="Write your message here..." required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span id="btn-text">Send Message</span>
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+
+                <div id="form-success" class="form-feedback success" style="display:none;">
+                    <i class="fa-solid fa-circle-check"></i>
+                    Your message has been sent! We will contact you as soon as possible.
+                </div>
+                <div id="form-error" class="form-feedback error" style="display:none;">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    Something went wrong. Please try again or email us at info@binovator.sr.
+                </div>
+
+                <div class="form-note">We will respond within 1–2 business days to your message.</div>
+            </form>
+        </div>
+
+    </div>
+</div>
+<script src="Script.js"></script>
+</div>
+
+<script>
+    const form = document.getElementById('contact-form');
+    const btnText = document.getElementById('btn-text');
+    const successMsg = document.getElementById('form-success');
+    const errorMsg = document.getElementById('form-error');
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const submitBtn = form.querySelector('.submit-btn');
+        submitBtn.disabled = true;
+        btnText.textContent = 'Bezig met verzenden...';
+        successMsg.style.display = 'none';
+        errorMsg.style.display = 'none';
+
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            });
+            if (response.ok) {
+                successMsg.style.display = 'flex';
+                form.reset();
+            } else {
+                errorMsg.style.display = 'flex';
+            }
+        } catch(err) {
+            errorMsg.style.display = 'flex';
+        } finally {
+            submitBtn.disabled = false;
+            btnText.textContent = 'Verstuur bericht';
+        }
+    });
+</script>
+
+</body>
+</html>
